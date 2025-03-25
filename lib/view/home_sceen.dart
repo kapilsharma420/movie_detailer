@@ -11,9 +11,10 @@ class _HomeSceenState extends State<HomeSceen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amber,
       body: Column(
         children: [
-          
+
         ],
       ),
     );
