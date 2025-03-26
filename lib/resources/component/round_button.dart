@@ -14,15 +14,15 @@ class RoundButton extends StatelessWidget {
     this.loading = false,
     required this.onpress,
   });
-
+  
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //for debug print 
-        print('clicked');
+        //for debug print
+        // print('clicked');
 
-        //onpress per () lgani h call ker rahe hai 
+        //onpress per () lgani h call ker rahe hai
         onpress();
       },
       child: Container(

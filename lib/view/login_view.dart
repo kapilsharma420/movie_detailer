@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm/repository/auth_repository.dart';
 import 'package:mvvm/resources/component/round_button.dart';
 import 'package:mvvm/utiles/routes/routes_name.dart';
 import 'package:mvvm/utiles/utiles.dart';
 import 'package:mvvm/view/home_sceen.dart';
+import 'package:mvvm/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -31,6 +34,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       appBar: AppBar(
@@ -90,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
               title: 'login',
               onpress: () {
                 //for debugin print
-                print('again click');
+                // print('again click');
 
                 if (emailcontroller.text.isEmpty &&
                     passwordcontroller.text.isEmpty) {
@@ -114,7 +118,13 @@ class _LoginViewState extends State<LoginView> {
                     context,
                   );
                 } else {
-                  Utiles.toastMessage('api hit ');
+                  Map data = {
+                    'email': emailcontroller.text.toString(),
+                    'password': passwordcontroller.text.toString(),
+                  };
+                  authViewModel.loginApi(data, context);
+                  print('api hit ');
+                  //Utiles.toastMessage('api hit ');
                 }
               },
             ),
