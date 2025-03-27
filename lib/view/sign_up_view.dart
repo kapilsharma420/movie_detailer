@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm/repository/auth_repository.dart';
 import 'package:mvvm/resources/component/round_button.dart';
-import 'package:mvvm/utiles/routes/routes_name.dart';
 import 'package:mvvm/utiles/utiles.dart';
-import 'package:mvvm/view/home_sceen.dart';
 import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   FocusNode email_focus_node = FocusNode();
@@ -38,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login', style: TextStyle(color: Colors.white)),
+        title: Text('Signup', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -91,7 +88,7 @@ class _LoginViewState extends State<LoginView> {
             ),
             SizedBox(height: height * .05),
             RoundButton(
-              title: 'login',
+              title: 'SignUp',
               loading: authViewModel.loading,
               onpress: () {
                 //for debugin print
@@ -130,12 +127,7 @@ class _LoginViewState extends State<LoginView> {
               },
             ),
             SizedBox(height: height * .05),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, RoutesName.signup);
-              },
-              child: Text('Dont have an account? Sign Up'),
-            ),
+            InkWell(child: Text('Dont have an account? Sign Up')),
           ],
         ),
       ),
