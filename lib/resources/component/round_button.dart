@@ -40,7 +40,7 @@ class RoundButton extends StatelessWidget {
                     strokeWidth: 5,
                   )
                   : Text(
-                    'LogIn',
+                    title,
                     style: TextStyle(color: AppColors.whiteColor),
                   ),
         ),

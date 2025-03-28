@@ -8,8 +8,17 @@ class AuthViewModel with ChangeNotifier {
   final _myrepo = AuthRepository();
   bool _loading = false;
   bool get loading => _loading;
+
   setloading(bool value) {
     _loading = value;
+    notifyListeners();
+  }
+
+  bool _signuploading = false;
+  bool get signuploading => _signuploading;
+
+  setsignuploading(bool value) {
+    _signuploading = value;
     notifyListeners();
   }
 
@@ -26,9 +35,29 @@ class AuthViewModel with ChangeNotifier {
         })
         .onError((error, stackTrace) {
           setloading(false);
-          Utiles.FlushBarErrorMessages('incorrect or no internet ', context);
+          Utiles.FlushBarErrorMessages(error.toString(), context);
           if (kDebugMode) {
-            
+            print(error.toString());
+          }
+        });
+  }
+
+  Future<void> signupApi(dynamic data, BuildContext context) async {
+    setsignuploading(true);
+    _myrepo
+        .signupApi(data)
+        .then((value) {
+          setsignuploading(false);
+          Utiles.FlushBarErrorMessages('Register Successfully', context);
+          Navigator.pushNamed(context, RoutesName.home);
+          if (kDebugMode) {
+            print(value.toString());
+          }
+        })
+        .onError((error, stackTrace) {
+          setsignuploading(false);
+          Utiles.FlushBarErrorMessages(error.toString(), context);
+          if (kDebugMode) {
             print(error.toString());
           }
         });

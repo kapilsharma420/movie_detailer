@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm/resources/component/round_button.dart';
+import 'package:mvvm/utiles/routes/routes_name.dart';
 import 'package:mvvm/utiles/utiles.dart';
 import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,8 @@ class _SignUpViewState extends State<SignUpView> {
             SizedBox(height: height * .05),
             RoundButton(
               title: 'SignUp',
-              loading: authViewModel.loading,
+
+              loading: authViewModel.signuploading,
               onpress: () {
                 //for debugin print
                 // print('again click');
@@ -110,9 +112,9 @@ class _SignUpViewState extends State<SignUpView> {
                     'please enter the password',
                     context,
                   );
-                } else if (passwordcontroller.text.length < 8) {
+                } else if (passwordcontroller.text.length < 6) {
                   Utiles.FlushBarErrorMessages(
-                    'lenght of password is less than 8',
+                    'lenght of password is less than 6',
                     context,
                   );
                 } else {
@@ -120,14 +122,20 @@ class _SignUpViewState extends State<SignUpView> {
                     'email': emailcontroller.text.toString(),
                     'password': passwordcontroller.text.toString(),
                   };
-                  authViewModel.loginApi(data, context);
+                  authViewModel.signupApi(data, context);
                   print('api hit ');
                   //Utiles.toastMessage('api hit ');
                 }
               },
             ),
             SizedBox(height: height * .05),
-            InkWell(child: Text('Dont have an account? Sign Up')),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+                //Navigator.pushNamed(context, RoutesName.login);
+              },
+              child: Text('Already have an account? Login'),
+            ),
           ],
         ),
       ),
