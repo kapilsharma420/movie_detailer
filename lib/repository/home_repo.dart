@@ -5,14 +5,21 @@ import 'package:mvvm/resources/app_url.dart';
 
 class HomeRepo {
   BaseApiServices _apiServices = NetworkApiServices();
+
   Future<MovieListModel> fetchmovieslist() async {
-    try {
-      dynamic response = await _apiServices.getGetApiResponse(
-        AppUrl.movielistapi
-      );
-      return response = MovieListModel.fromJson(response);
-    } catch (e) {
-      throw e;
-    }
+  try {
+   // print("API URL: ${AppUrl.movielistapi}"); // Debugging line
+
+    dynamic response = await _apiServices.getGetApiResponse(AppUrl.movielistapi);
+    
+   // print("API Response: $response"); // Debugging line
+
+    return MovieListModel.fromJson(response); // No need to assign response again
+  } catch (e) {
+    print("Exception: $e");
+    throw e;
   }
+}
+
+
 }

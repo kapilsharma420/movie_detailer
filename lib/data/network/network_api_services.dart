@@ -13,7 +13,7 @@ class NetworkApiServices extends BaseApiServices {
     dynamic responseJson;
     try {
       final Response = await http
-          .get(Uri.parse('uri'))
+          .get(Uri.parse(url))
           .timeout(Duration(seconds: 10));
       responseJson = returnResponse(Response);
     } on SocketException {

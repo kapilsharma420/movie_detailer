@@ -16,10 +16,10 @@ class HomeViewwModel with ChangeNotifier {
     _myrepo
         .fetchmovieslist()
         .then((value) {
-          setmovieslist(ApiResponse.completed());
+          setmovieslist(ApiResponse.completed(value));
         })
         .onError((error, stackTrace) {
-          setmovieslist(ApiResponse.error());
+          setmovieslist(ApiResponse.error(error.toString()));
         });
   }
 }
