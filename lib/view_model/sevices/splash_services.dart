@@ -5,14 +5,20 @@ import 'package:mvvm/utiles/routes/routes_name.dart';
 import 'package:mvvm/view_model/user_view_model.dart';
 
 class SplashServices {
+  Future<user_model> getuserdata() => UserViewModel().getuser();
+
+
   void checkauthentication(BuildContext context) async {
+    
     getuserdata()
         .then((value) async {
           print(value.token);
-             if (value.token != null && value.token!.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, RoutesName.home);
+             if (value.token == 'null' || value.token=='') {
+              await Future.delayed(Duration(seconds: 2));
+        Navigator.pushNamed(context, RoutesName.login);
       } else {
-        Navigator.pushReplacementNamed(context, RoutesName.login);
+        await Future.delayed(Duration(seconds: 2));
+        Navigator.pushNamed(context, RoutesName.home);
       }
     })
         .onError((error, stackTrace) {
@@ -20,9 +26,12 @@ class SplashServices {
             print(error.toString());
           }
         });
+
+
   }
 
-  Future<user_model> getuserdata() => UserViewModel().getuser();
+
+  
 }
 
 // import 'package:flutter/widgets.dart';

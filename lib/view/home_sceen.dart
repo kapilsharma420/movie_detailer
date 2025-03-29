@@ -16,19 +16,39 @@ class _HomeSceenState extends State<HomeSceen> {
     final userPrefrence = Provider.of<UserViewModel>(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () {
-              userPrefrence.remove().then((value) {
-                Navigator.pushNamed(context, RoutesName.login);
-              });
-            },
-            child: Center(child: Text('logout')),
-          ),
+
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        
+        automaticallyImplyLeading: false,
+        actions: [
+ InkWell(
+          onTap: () {
+            userPrefrence.remove().then((value) {
+        Navigator.pushNamed(
+          context,
+          RoutesName.login,
+         
+        );
+            });
+          },
+          child: Center(child: Text('logout',style: TextStyle(color: Colors.white),)),
+        ),
+        SizedBox(width: 20,)
         ],
+      ),
+      
+      
+      body: SafeArea(
+        
+      
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+         
+           
+          ],
+        ),
       ),
     );
   }
