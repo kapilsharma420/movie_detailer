@@ -21,6 +21,11 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('splashscreen',style: Theme.of(context).textTheme.headlineLarge,),));
+    return Scaffold(body: Center(child:
+    
+    Image(image: AssetImage('images/original.webp')),
+     //Text('splashscreen',style: Theme.of(context).textTheme.headlineLarge,),
+     
+     ));
   }
 }
