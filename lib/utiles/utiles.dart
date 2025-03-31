@@ -11,7 +11,9 @@ class Utiles {
     for (int i = 0; i < rating.length; i++) {
       avgRating = avgRating + rating[i];
     }
-    return double.parse((avgRating/rating.length).toStringAsFixed(1));
+    return double.parse((
+      avgRating/rating.length
+      ).toStringAsFixed(1));
   }
 
   static toastMessage(String message) {
